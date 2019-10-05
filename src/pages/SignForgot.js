@@ -3,13 +3,13 @@ import React, { useState } from "react";
 import Avatar from "@material-ui/core/Avatar";
 import Button from "@material-ui/core/Button";
 import Grid from "@material-ui/core/Grid";
-import LockOutlinedIcon from "@material-ui/icons/LockOutlined";
+import VpnKeyIcon from "@material-ui/icons/VpnKey";
 import Typography from "@material-ui/core/Typography";
 import { makeStyles } from "@material-ui/core/styles";
 import { Link } from "react-router-dom";
 
 import useForm from "../components/useForm";
-import validateSignin from "../utils/validateSignin";
+import validateReset from "../utils/validateReset";
 import InputField from "../components/InputField";
 import firebase from "../firebase/firebase";
 import ErrorMessage from "../components/ErrorMessage";
@@ -35,18 +35,17 @@ const useStyles = makeStyles(theme => ({
 }));
 
 const initialState = {
-  email: "",
-  password: ""
+  email: ""
 };
 
-function SignIn(props) {
+function SignForgot(props) {
   const classes = useStyles();
   const [authErrors, setAuthErrors] = useState("");
 
-  async function handleSignin() {
+  async function handleReset() {
     try {
-      await firebase.login(user.email, user.password);
-      props.history.push("/");
+      await firebase.resetPassword(user.email);
+      props.history.push("/reset-success");
     } catch (err) {
       setAuthErrors(err.message);
       console.error("authentication Error", err);
@@ -55,14 +54,14 @@ function SignIn(props) {
 
   const { user, handleChangeField, errors, handleSubmit } = useForm(
     initialState,
-    validateSignin,
-    handleSignin
+    validateReset,
+    handleReset
   );
 
   return (
     <div className={classes.paper}>
       <Avatar className={classes.avatar}>
-        <LockOutlinedIcon />
+        <VpnKeyIcon />
       </Avatar>
       <Typography component="h1" variant="h5">
         Sign in
@@ -80,21 +79,6 @@ function SignIn(props) {
           isAutoFocus={true}
         />
 
-        <InputField
-          name="password"
-          type="password"
-          label="password"
-          value={user.password}
-          handleChange={handleChangeField}
-          isInvalid={errors.password}
-          isRequired={true}
-          isAutoFocus={false}
-        />
-
-        {/* <FormControlLabel
-          control={<Checkbox value="remember" color="primary" />}
-          label="Remember me"
-        /> */}
         {authErrors && <ErrorMessage authErrors={authErrors} />}
 
         <Button
@@ -121,4 +105,4 @@ function SignIn(props) {
   );
 }
 
-export default SignIn;
+export default SignForgot;

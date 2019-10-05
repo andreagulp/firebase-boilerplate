@@ -49,8 +49,9 @@ function SignUp(props) {
   const [authErrors, setAuthErrors] = useState("");
 
   async function handleSignup() {
+    const userDisplayName = user.firstName + " " + user.lastName;
     try {
-      await firebase.register(user.name, user.email, user.password);
+      await firebase.register(userDisplayName, user.email, user.password);
       props.history.push("/");
     } catch (err) {
       setAuthErrors(err.message);

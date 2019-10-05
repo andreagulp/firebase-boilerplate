@@ -7,6 +7,7 @@ import Button from "@material-ui/core/Button";
 import IconButton from "@material-ui/core/IconButton";
 import MenuIcon from "@material-ui/icons/Menu";
 import { Link } from "react-router-dom";
+import useAuthUser from "../components/useAuthUser";
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -26,6 +27,7 @@ const useStyles = makeStyles(theme => ({
 
 function Header() {
   const classes = useStyles();
+  const authUser = useAuthUser();
 
   return (
     <div className={classes.root}>
@@ -40,7 +42,8 @@ function Header() {
             <MenuIcon />
           </IconButton>
           <Typography variant="h6" className={classes.title}>
-            News
+            {/* {!authUser.email ? "News" : authUser.email} */}
+            News {authUser.displayName}
           </Typography>
           <Link to="/signin" className={classes.signinButton}>
             <Button color="inherit">Login</Button>

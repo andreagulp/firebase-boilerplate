@@ -10,6 +10,8 @@ import Home from "./pages/Home";
 import News from "./pages/News";
 import SignIn from "./pages/SignIn";
 import SignUp from "./pages/SignUp";
+import SignForgot from "./pages/SignForgot";
+import SignResetSuccess from "./pages/SignResetSuccess";
 
 const useStyles = makeStyles(theme => ({
   heroContent: {
@@ -32,6 +34,9 @@ function App() {
               <Route path="/news" component={News} />
               <Route path="/signin" component={SignIn} />
               <Route path="/signup" component={SignUp} />
+              <Route path="/reset" component={SignForgot} />
+              <Route path="/reset-success" component={SignResetSuccess} />
+
               <Route path="/" component={Home} />
             </Switch>
           </Container>
