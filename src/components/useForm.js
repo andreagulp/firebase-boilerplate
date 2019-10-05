@@ -16,7 +16,6 @@ function useForm(initialState, validate, submit) {
   const handleSubmit = e => {
     e.preventDefault();
     submit();
-    setUser(initialState);
   };
 
   return {

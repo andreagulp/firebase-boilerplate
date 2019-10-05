@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 
 import Avatar from "@material-ui/core/Avatar";
 import Button from "@material-ui/core/Button";
@@ -12,6 +12,7 @@ import useForm from "../components/useForm";
 import validateSignin from "../utils/validateSignin";
 import InputField from "../components/InputField";
 import firebase from "../firebase/firebase";
+import ErrorMessage from "../components/ErrorMessage";
 
 const useStyles = makeStyles(theme => ({
   paper: {
@@ -38,13 +39,16 @@ const initialState = {
   password: ""
 };
 
-function SignIn() {
+function SignIn(props) {
   const classes = useStyles();
+  const [authErrors, setAuthErrors] = useState("");
 
   async function handleSignin() {
     try {
       await firebase.login(user.email, user.password);
+      props.history.push("/");
     } catch (err) {
+      setAuthErrors(err.message);
       console.error("authentication Error", err);
     }
   }
@@ -54,8 +58,6 @@ function SignIn() {
     validateSignin,
     handleSignin
   );
-
-  // const { login } = useFirebase();
 
   return (
     <div className={classes.paper}>
@@ -93,6 +95,8 @@ function SignIn() {
           control={<Checkbox value="remember" color="primary" />}
           label="Remember me"
         /> */}
+        {authErrors && <ErrorMessage authErrors={authErrors} />}
+
         <Button
           type="submit"
           fullWidth

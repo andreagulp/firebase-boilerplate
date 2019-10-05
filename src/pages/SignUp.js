@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import Avatar from "@material-ui/core/Avatar";
 import Button from "@material-ui/core/Button";
 import { Link } from "react-router-dom";
@@ -10,6 +10,7 @@ import firebase from "../firebase/firebase";
 import validateSignup from "../utils/validateSignup";
 import InputField from "../components/InputField";
 import useForm from "../components/useForm";
+import ErrorMessage from "../components/ErrorMessage";
 
 const useStyles = makeStyles(theme => ({
   "@global": {
@@ -45,12 +46,14 @@ const initialState = {
 
 function SignUp(props) {
   const classes = useStyles();
+  const [authErrors, setAuthErrors] = useState("");
 
   async function handleSignup() {
     try {
       await firebase.register(user.name, user.email, user.password);
       props.history.push("/");
     } catch (err) {
+      setAuthErrors(err.message);
       console.error("authentication Error", err);
     }
   }
@@ -126,6 +129,7 @@ function SignUp(props) {
             />
           </Grid> */}
         </Grid>
+        {authErrors && <ErrorMessage authErrors={authErrors} />}
         <Button
           type="submit"
           fullWidth
