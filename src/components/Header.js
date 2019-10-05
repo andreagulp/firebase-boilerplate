@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import AppBar from "@material-ui/core/AppBar";
 import Toolbar from "@material-ui/core/Toolbar";
@@ -7,7 +7,9 @@ import Button from "@material-ui/core/Button";
 import IconButton from "@material-ui/core/IconButton";
 import MenuIcon from "@material-ui/icons/Menu";
 import { Link } from "react-router-dom";
+
 import useAuthUser from "../components/useAuthUser";
+import Navigation from "./Navigation";
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -28,6 +30,14 @@ const useStyles = makeStyles(theme => ({
 function Header() {
   const classes = useStyles();
   const authUser = useAuthUser();
+  const [openNav, setOpenNav] = useState(false);
+
+  const handleToggleNav = e => {
+    if (e && e.type === "keydown" && (e.key === "Tab" || e.key === "Shift")) {
+      return;
+    }
+    setOpenNav(!openNav);
+  };
 
   return (
     <div className={classes.root}>
@@ -38,6 +48,7 @@ function Header() {
             className={classes.menuButton}
             color="inherit"
             aria-label="menu"
+            onClick={handleToggleNav}
           >
             <MenuIcon />
           </IconButton>
@@ -50,6 +61,7 @@ function Header() {
           </Link>
         </Toolbar>
       </AppBar>
+      <Navigation openNav={openNav} handleToggleNav={handleToggleNav} />
     </div>
   );
 }
