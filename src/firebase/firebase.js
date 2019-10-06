@@ -9,6 +9,9 @@ class Firebase {
     app.initializeApp(firebaseConfig);
     this.auth = app.auth();
     this.googleProvider = new app.auth.GoogleAuthProvider();
+    this.googleProvider.setCustomParameters({
+      prompt: "select_account"
+    });
     this.gitHubProvider = new app.auth.GithubAuthProvider();
   }
 
@@ -35,11 +38,11 @@ class Firebase {
   }
 
   async googleLogin() {
-    return await this.auth.signInWithPopup(this.googleProvider);
+    return await this.auth.signInWithRedirect(this.googleProvider);
   }
 
   async gitHubLogin() {
-    return await this.auth.signInWithPopup(this.gitHubProvider);
+    return await this.auth.signInWithRedirect(this.gitHubProvider);
   }
 
   async logout() {

@@ -11,6 +11,7 @@ import AccountCircleTwoToneIcon from "@material-ui/icons/AccountCircleTwoTone";
 import HomeTwoToneIcon from "@material-ui/icons/HomeTwoTone";
 import GroupWorkTwoToneIcon from "@material-ui/icons/GroupWorkTwoTone";
 import GroupTwoToneIcon from "@material-ui/icons/GroupTwoTone";
+import firebase from "../firebase/firebase";
 
 import { NavLink } from "react-router-dom";
 
@@ -35,11 +36,6 @@ const navPublicConfig = [
     text: "Home"
   },
   {
-    url: "/myprofile",
-    icon: <AccountCircleTwoToneIcon />,
-    text: "My Profile"
-  },
-  {
     url: "/signup",
     icon: <GroupTwoToneIcon />,
     text: "Sign Up"
@@ -61,6 +57,14 @@ const navAuthConfig = [
 function Navigation({ openNav, handleToggleNav }) {
   const classes = useStyles();
   const userAuth = useAuthUser();
+
+  async function handleLogout() {
+    try {
+      await firebase.logout();
+    } catch (err) {
+      console.error("authentication Error", err);
+    }
+  }
 
   const sideList = (
     <div className={classes.list}>
@@ -89,6 +93,12 @@ function Navigation({ openNav, handleToggleNav }) {
               </NavLink>
             );
           })}
+          <ListItem button onClick={handleLogout}>
+            <ListItemIcon>
+              <GroupTwoToneIcon />
+            </ListItemIcon>
+            <ListItemText primary="Log Out" />
+          </ListItem>
         </List>
       )}
     </div>
