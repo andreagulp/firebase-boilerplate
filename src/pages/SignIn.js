@@ -42,7 +42,6 @@ const initialState = {
 function SignIn(props) {
   const classes = useStyles();
   const [authErrors, setAuthErrors] = useState("");
-
   async function handleSignin() {
     try {
       await firebase.login(user.email, user.password);

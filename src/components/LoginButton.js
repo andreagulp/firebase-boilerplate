@@ -46,7 +46,6 @@ function LoginButton() {
     <>
       {authUser ? (
         <>
-          {/* <Link to="/myprofile" className={classes.signinButton}> */}
           <IconButton
             aria-label="select"
             color="default"
@@ -58,7 +57,7 @@ function LoginButton() {
               className={classes.avatar}
             />
           </IconButton>
-          {/* </Link> */}
+
           <Menu
             id="simple-menu"
             anchorEl={isMenuOpen}
@@ -66,7 +65,9 @@ function LoginButton() {
             open={Boolean(isMenuOpen)}
             onClose={handleMenuClose}
           >
-            <MenuItem onClick={handleMenuClose}>Profile</MenuItem>
+            <Link to="/myprofile" className={classes.signinButton}>
+              <MenuItem onClick={handleMenuClose}>Profile</MenuItem>
+            </Link>
             <MenuItem onClick={handleSignout}>Logout</MenuItem>
           </Menu>
         </>
