@@ -7,12 +7,17 @@ import LockOutlinedIcon from "@material-ui/icons/LockOutlined";
 import Typography from "@material-ui/core/Typography";
 import { makeStyles } from "@material-ui/core/styles";
 import { Link } from "react-router-dom";
+import Divider from "@material-ui/core/Divider";
 
 import useForm from "../components/useForm";
 import validateSignin from "../utils/validateSignin";
 import InputField from "../components/InputField";
 import firebase from "../firebase/firebase";
 import ErrorMessage from "../components/ErrorMessage";
+
+import Icon from "@mdi/react";
+import { mdiGooglePlus } from "@mdi/js";
+import { mdiGithubCircle } from "@mdi/js";
 
 const useStyles = makeStyles(theme => ({
   paper: {
@@ -31,6 +36,21 @@ const useStyles = makeStyles(theme => ({
   },
   submit: {
     margin: theme.spacing(3, 0, 2)
+  },
+  button: {
+    margin: theme.spacing(1),
+    width: "100%"
+  },
+  dividerContainer: {
+    width: "100%",
+    height: "20px",
+    borderBottom: "1px solid black",
+    textAlign: "center"
+  },
+  divider: {
+    fontSize: "20px",
+    // backgroundColor: "#F3F5F6",
+    padding: "0 10px"
   }
 }));
 
@@ -42,9 +62,29 @@ const initialState = {
 function SignIn(props) {
   const classes = useStyles();
   const [authErrors, setAuthErrors] = useState("");
+
   async function handleSignin() {
     try {
       await firebase.login(user.email, user.password);
+      props.history.push("/");
+    } catch (err) {
+      setAuthErrors(err.message);
+      console.error("authentication Error", err);
+    }
+  }
+
+  async function handleSigninWithGoogle() {
+    try {
+      await firebase.googleLogin();
+      props.history.push("/");
+    } catch (err) {
+      setAuthErrors(err.message);
+      console.error("authentication Error", err);
+    }
+  }
+  async function handleSigninWithGitHub() {
+    try {
+      await firebase.gitHubLogin();
       props.history.push("/");
     } catch (err) {
       setAuthErrors(err.message);
@@ -66,6 +106,41 @@ function SignIn(props) {
       <Typography component="h1" variant="h5">
         Sign in
       </Typography>
+      <Button
+        variant="contained"
+        color="primary"
+        className={classes.button}
+        startIcon={
+          <Icon
+            path={mdiGooglePlus}
+            title="User Profile"
+            size={2}
+            color="white"
+          />
+        }
+        // startIcon={<LockOpenIcon />}
+        onClick={handleSigninWithGoogle}
+      >
+        Signin with Google
+      </Button>
+      <Button
+        variant="contained"
+        color="default"
+        className={classes.button}
+        startIcon={
+          <Icon
+            path={mdiGithubCircle}
+            title="User Profile"
+            size={2}
+            color="grey"
+          />
+        }
+        onClick={handleSigninWithGitHub}
+      >
+        Signin with GitHub
+      </Button>
+
+      <Divider />
 
       <form className={classes.form} noValidate>
         <InputField

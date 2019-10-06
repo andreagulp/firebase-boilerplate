@@ -1,10 +1,3 @@
-// import app from "firebase/app";
-// import "firebase/analytics";
-// import "firebase/auth";
-// import firebaseConfig from "./config";
-
-// app.initializeApp(firebaseConfig);
-
 import app from "firebase/app";
 import "firebase/auth";
 
@@ -15,6 +8,8 @@ class Firebase {
   constructor() {
     app.initializeApp(firebaseConfig);
     this.auth = app.auth();
+    this.googleProvider = new app.auth.GoogleAuthProvider();
+    this.gitHubProvider = new app.auth.GithubAuthProvider();
   }
 
   async register(name, email, password) {
@@ -37,6 +32,14 @@ class Firebase {
 
   async resetPassword(email) {
     return await this.auth.sendPasswordResetEmail(email);
+  }
+
+  async googleLogin() {
+    return await this.auth.signInWithPopup(this.googleProvider);
+  }
+
+  async gitHubLogin() {
+    return await this.auth.signInWithPopup(this.gitHubProvider);
   }
 
   async logout() {
