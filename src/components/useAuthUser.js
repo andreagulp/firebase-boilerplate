@@ -13,7 +13,7 @@ function useAuthUser() {
       }
     });
     return () => unsubscribe();
-  }, []);
+  }, [authUser]);
 
   return authUser;
 }

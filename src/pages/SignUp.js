@@ -13,11 +13,11 @@ import useForm from "../components/useForm";
 import ErrorMessage from "../components/ErrorMessage";
 
 const useStyles = makeStyles(theme => ({
-  "@global": {
-    body: {
-      backgroundColor: theme.palette.common.white
-    }
-  },
+  // "@global": {
+  //   body: {
+  //     backgroundColor: theme.palette.common.white
+  //   }
+  // },
   paper: {
     marginTop: theme.spacing(8),
     display: "flex",

@@ -73,7 +73,9 @@ const avatarsAnimal = [
 ];
 
 export const selectRandomAvatar = () => {
-  const index = Math.floor(Math.random() * 101);
+  const index = Math.floor(Math.random() * 70);
   const userRandomAvatar = avatarsAnimal[index];
+  console.log("userRandomAvatar", userRandomAvatar);
+
   return userRandomAvatar;
 };
