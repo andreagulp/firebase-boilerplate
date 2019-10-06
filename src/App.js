@@ -12,6 +12,7 @@ import SignIn from "./pages/SignIn";
 import SignUp from "./pages/SignUp";
 import SignForgot from "./pages/SignForgot";
 import SignResetSuccess from "./pages/SignResetSuccess";
+import UserAuthProfile from "./pages/UserAuthProfile";
 
 const useStyles = makeStyles(theme => ({
   heroContent: {
@@ -36,6 +37,7 @@ function App() {
               <Route path="/signup" component={SignUp} />
               <Route path="/reset" component={SignForgot} />
               <Route path="/reset-success" component={SignResetSuccess} />
+              <Route path="/myprofile" component={UserAuthProfile} />
 
               <Route path="/" component={Home} />
             </Switch>

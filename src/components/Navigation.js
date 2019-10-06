@@ -33,7 +33,7 @@ const navConfig = [
     text: "Home"
   },
   {
-    url: "/news",
+    url: "/myprofile",
     icon: <AccountCircleTwoToneIcon />,
     text: "My Profile"
   },

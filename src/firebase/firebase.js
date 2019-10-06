@@ -9,6 +9,7 @@ import app from "firebase/app";
 import "firebase/auth";
 
 import firebaseConfig from "./config";
+import { selectRandomAvatar } from "../utils/userAvatars";
 
 class Firebase {
   constructor() {
@@ -21,8 +22,12 @@ class Firebase {
       email,
       password
     );
+
     return await newUser.user.updateProfile({
-      displayName: name
+      displayName: name,
+      photoURL: `${
+        process.env.PUBLIC_URL
+      }/images/avatars-animal/${selectRandomAvatar()}`
     });
   }
 
@@ -32,6 +37,10 @@ class Firebase {
 
   async resetPassword(email) {
     return await this.auth.sendPasswordResetEmail(email);
+  }
+
+  async logout() {
+    return await this.auth.signOut();
   }
 }
 
