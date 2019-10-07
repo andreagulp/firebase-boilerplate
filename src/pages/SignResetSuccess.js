@@ -3,7 +3,7 @@ import React from "react";
 function SignResetSuccess() {
   return (
     <div>
-      <h4>Hello SignResetSuccess</h4>
+      <h4>check your email inbox to reset the password</h4>
     </div>
   );
 }
