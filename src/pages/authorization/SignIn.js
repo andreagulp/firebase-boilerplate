@@ -82,6 +82,7 @@ function SignIn(props) {
       console.error("authentication Error", err);
     }
   }
+
   async function handleSigninWithGitHub() {
     try {
       await firebase.gitHubLogin();
