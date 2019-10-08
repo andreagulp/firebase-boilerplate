@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, withRouter } from "react-router-dom";
 import { makeStyles } from "@material-ui/core/styles";
 import Avatar from "@material-ui/core/Avatar";
 import useAuthUser from "../components/useAuthUser";
@@ -19,7 +19,7 @@ const useStyles = makeStyles(theme => ({
   }
 }));
 
-function LoginButton() {
+function LoginButton({ history }) {
   const classes = useStyles();
   const authUser = useAuthUser();
   const [isMenuOpen, setIsMenuOpen] = useState(null);
@@ -36,6 +36,7 @@ function LoginButton() {
     try {
       await firebase.logout();
       handleMenuClose();
+      history.push("/");
     } catch (err) {
       console.error("authentication Error", err);
       handleMenuClose();
@@ -80,4 +81,4 @@ function LoginButton() {
   );
 }
 
-export default LoginButton;
+export default withRouter(LoginButton);
