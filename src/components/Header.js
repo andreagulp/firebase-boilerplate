@@ -7,7 +7,7 @@ import IconButton from "@material-ui/core/IconButton";
 import MenuIcon from "@material-ui/icons/Menu";
 
 import Navigation from "./Navigation";
-import LoginButton from "./LoginButton";
+import LoginButton from "./authorization/LoginButton";
 
 const useStyles = makeStyles(theme => ({
   root: {

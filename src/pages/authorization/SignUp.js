@@ -6,11 +6,11 @@ import Grid from "@material-ui/core/Grid";
 import LockOutlinedIcon from "@material-ui/icons/LockOutlined";
 import Typography from "@material-ui/core/Typography";
 import { makeStyles } from "@material-ui/core/styles";
-import firebase from "../firebase/firebase";
-import validateSignup from "../utils/validateSignup";
-import InputField from "../components/InputField";
-import useForm from "../components/useForm";
-import ErrorMessage from "../components/ErrorMessage";
+import firebase from "../../firebase/firebase";
+import validateSignup from "../../utils/validateSignup";
+import InputField from "../../components/InputField";
+import useForm from "../../components/useForm";
+import ErrorMessage from "../../components/authorization/ErrorMessage";
 
 const useStyles = makeStyles(theme => ({
   // "@global": {

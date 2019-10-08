@@ -3,7 +3,7 @@ import { makeStyles } from "@material-ui/core/styles";
 import Avatar from "@material-ui/core/Avatar";
 import Typography from "@material-ui/core/Typography";
 
-import useAuthUser from "../components/useAuthUser";
+import useAuthUser from "../../components/useAuthUser";
 
 const useStyles = makeStyles(theme => ({
   paper: {

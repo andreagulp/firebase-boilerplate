@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 
 import Avatar from "@material-ui/core/Avatar";
 import Button from "@material-ui/core/Button";
@@ -9,11 +9,11 @@ import { makeStyles } from "@material-ui/core/styles";
 import { Link } from "react-router-dom";
 import Divider from "@material-ui/core/Divider";
 
-import useForm from "../components/useForm";
-import validateSignin from "../utils/validateSignin";
-import InputField from "../components/InputField";
-import firebase from "../firebase/firebase";
-import ErrorMessage from "../components/ErrorMessage";
+import useForm from "../../components/useForm";
+import validateSignin from "../../utils/validateSignin";
+import InputField from "../../components/InputField";
+import firebase from "../../firebase/firebase";
+import ErrorMessage from "../../components/authorization/ErrorMessage";
 
 import Icon from "@mdi/react";
 import { mdiGooglePlus } from "@mdi/js";

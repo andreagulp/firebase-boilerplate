@@ -8,11 +8,11 @@ import Typography from "@material-ui/core/Typography";
 import { makeStyles } from "@material-ui/core/styles";
 import { Link } from "react-router-dom";
 
-import useForm from "../components/useForm";
-import validateReset from "../utils/validateReset";
-import InputField from "../components/InputField";
-import firebase from "../firebase/firebase";
-import ErrorMessage from "../components/ErrorMessage";
+import useForm from "../../components/useForm";
+import validateReset from "../../utils/validateReset";
+import InputField from "../../components/InputField";
+import firebase from "../../firebase/firebase";
+import ErrorMessage from "../../components/authorization/ErrorMessage";
 
 const useStyles = makeStyles(theme => ({
   paper: {

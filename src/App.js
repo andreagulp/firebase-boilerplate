@@ -8,11 +8,11 @@ import { makeStyles } from "@material-ui/core/styles";
 import Header from "./components/Header";
 import Home from "./pages/Home";
 import News from "./pages/News";
-import SignIn from "./pages/SignIn";
-import SignUp from "./pages/SignUp";
-import SignForgot from "./pages/SignForgot";
-import SignResetSuccess from "./pages/SignResetSuccess";
-import UserAuthProfile from "./pages/UserAuthProfile";
+import SignIn from "./pages/authorization/SignIn";
+import SignUp from "./pages/authorization/SignUp";
+import SignForgot from "./pages/authorization/SignForgot";
+import SignResetSuccess from "./pages/authorization/SignResetSuccess";
+import UserAuthProfile from "./pages/authorization/UserAuthProfile";
 
 const useStyles = makeStyles(theme => ({
   heroContent: {
