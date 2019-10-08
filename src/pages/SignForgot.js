@@ -52,7 +52,7 @@ function SignForgot(props) {
     }
   }
 
-  const { user, handleChangeField, errors, handleSubmit } = useForm(
+  const { value: user, handleChangeField, errors, handleSubmit } = useForm(
     initialState,
     validateReset,
     handleReset

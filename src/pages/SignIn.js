@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 
 import Avatar from "@material-ui/core/Avatar";
 import Button from "@material-ui/core/Button";
@@ -63,8 +63,6 @@ function SignIn(props) {
   const classes = useStyles();
   const [authErrors, setAuthErrors] = useState("");
 
-  console.log(props);
-
   async function handleSignin() {
     try {
       await firebase.login(user.email, user.password);
@@ -94,7 +92,7 @@ function SignIn(props) {
     }
   }
 
-  const { user, handleChangeField, errors, handleSubmit } = useForm(
+  const { value: user, handleChangeField, errors, handleSubmit } = useForm(
     initialState,
     validateSignin,
     handleSignin

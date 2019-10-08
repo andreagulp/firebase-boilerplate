@@ -1,16 +1,16 @@
 import { useState, useEffect } from "react";
 
 function useForm(initialState, validate, submit) {
-  const [user, setUser] = useState(initialState);
+  const [value, setValue] = useState(initialState);
   const [errors, setErrors] = useState({});
 
   useEffect(() => {
-    const validationErrors = validate(user);
+    const validationErrors = validate(value);
     setErrors(validationErrors);
-  }, [validate, user]);
+  }, [validate, value]);
 
   const handleChangeField = e => {
-    setUser({ ...user, [e.target.name]: e.target.value });
+    setValue({ ...value, [e.target.name]: e.target.value });
   };
 
   const handleSubmit = e => {
@@ -19,7 +19,7 @@ function useForm(initialState, validate, submit) {
   };
 
   return {
-    user,
+    value,
     handleChangeField,
     errors,
     handleSubmit

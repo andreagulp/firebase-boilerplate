@@ -59,7 +59,7 @@ function SignUp(props) {
     }
   }
 
-  const { user, handleChangeField, errors, handleSubmit } = useForm(
+  const { value: user, handleChangeField, errors, handleSubmit } = useForm(
     initialState,
     validateSignup,
     handleSignup
